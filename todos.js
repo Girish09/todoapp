@@ -17,17 +17,19 @@ document.querySelector('#filter-todo').addEventListener('input', function(e){
 
 //to add todo
 document.querySelector('#add-todo').addEventListener('submit', function(e){
+    const text = e.target.elements.itemAdded.value.trim();
     e.preventDefault();
-    todos.push({
-        id: uuidv4(),
-        text: e.target.elements.itemAdded.value,
-        completed: false
+    if (text.length>0){
+        todos.push({
+            id: uuidv4(),
+            text: text,
+            completed: false
+          })
         
-    })
-    
-    saveTodos(todos);
-    e.target.elements.itemAdded.value = ''
-    renderTodos(todos, filters);
+        saveTodos(todos);
+        e.target.elements.itemAdded.value = ''
+        renderTodos(todos, filters);
+    }
 })
 
 //HIDE COMPLETED
